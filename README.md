@@ -1,4 +1,4 @@
-#include<iostream>
+{#include<iostream>
 #include<iomanip>
 #include<string>
 using namespace std;
@@ -18,4 +18,5 @@ int main(){
    #display the total
 	cout<<setw(5)<<left<<"total"<<setw(5)<<right<<sum<<".00";
 	return 0;
+}
 }
