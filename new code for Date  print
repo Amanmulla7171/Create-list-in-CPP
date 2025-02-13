@@ -1,0 +1,67 @@
+#include <iostream>
+#include <iomanip> // For formatting output
+
+class Date {
+private:
+    int day, month, year; // Private data members
+
+public:
+    // Constructor to initialize the date
+    Date(int d, int m, int y) {
+        day = d;
+        month = m;
+        year = y;
+    }
+
+    // Setter functions
+    void setDay(int d) { day = d; }
+    void setMonth(int m) { month = m; }
+    void setYear(int y) { year = y; }
+
+    // Getter functions
+    int getDay() { return day; }
+    int getMonth() { return month; }
+    int getYear() { return year; }
+
+    // Function to convert month number to short name (e.g., 7 -> Jul)
+    std::string getMonthShortName() {
+        std::string months[] = {"Jan", "Feb", "Mar", "Apr", "May", "Jun",
+                                "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
+        return (month >= 1 && month <= 12) ? months[month - 1] : "Invalid";
+    }
+
+    // Function to display different date formats
+    void displayFormats() {
+        // Format 1: "1-7-95" (Short numeric format)
+        std::cout << "Format 1: " << day << "-" << month << "-" << (year % 100) << std::endl;
+
+        // Format 2: "01-07-0095" (Zero-padded day, month, full year)
+        std::cout << "Format 2: " << std::setw(2) << std::setfill('0') << day << "-"
+                  << std::setw(2) << std::setfill('0') << month << "-"
+                  << std::setw(4) << std::setfill('0') << year << std::endl;
+
+        // Format 3: "01-Jul-95" (Day, short month name, short year)
+        std::cout << "Format 3: " << std::setw(2) << std::setfill('0') << day << "-"
+                  << getMonthShortName() << "-" << (year % 100) << std::endl;
+    }
+};
+
+int main() {
+    // Create a Date object for 1st July 1995
+    Date myDate(1, 7, 1995);
+
+    // Display the original date formats
+    std::cout << "Original Date Formats:" << std::endl;
+    myDate.displayFormats();
+
+    // Modify the date using setter functions
+    myDate.setDay(10);
+    myDate.setMonth(12);
+    myDate.setYear(2000);
+
+    // Display the updated date formats
+    std::cout << "\nUpdated Date Formats:" << std::endl;
+    myDate.displayFormats();
+
+    return 0;
+}
